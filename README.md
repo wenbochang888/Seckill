@@ -64,3 +64,23 @@ ps. 序列化和反序列的时候用到了第三方的框架protostuff，这个
 3：第三就是restful风格的url地址，非常的优雅
 
 ## 项目展示
+
+### 商品详细列表
+
+![Image text](https://github.com/wenbochang888/Seckill/blob/master/img/List.png)
+
+### 验证列表
+
+![Image text](https://github.com/wenbochang888/Seckill/blob/master/img/DetailPhone.png)
+
+### 计时
+
+![Image text](https://github.com/wenbochang888/Seckill/blob/master/img/DetailNoStart.png)
+
+### 开始
+
+![Image text](https://github.com/wenbochang888/Seckill/blob/master/img/DetailStart.png)
+
+### 结束
+
+![Image text](https://github.com/wenbochang888/Seckill/blob/master/img/DetailEnd.png)
