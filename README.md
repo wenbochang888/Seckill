@@ -11,3 +11,9 @@
 ## 项目坏境
 
 	jdk1.8 + eclipse + window8.1 + tomcat8.5
+
+## 项目地址
+
+	已放在阿里云公网上，地址：http://120.78.159.149/Seckill/list
+
+	<a href="http://120.78.159.149/Seckill/list" target="_blank">项目地址</>
