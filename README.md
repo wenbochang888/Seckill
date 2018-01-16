@@ -14,4 +14,4 @@ jdk1.8 + eclipse + window8.1 + tomcat8.5
 
 ## 项目地址
 
-已放在阿里云公网上，地址：http://120.78.159.149:8080/seckill/list
+已放在阿里云公网上，地址：[http://120.78.159.149:8080/seckill/list](http://120.78.159.149:8080/seckill/list?_blank)
