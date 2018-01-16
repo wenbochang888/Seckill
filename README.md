@@ -14,6 +14,4 @@
 
 ## 项目地址
 
-	已放在阿里云公网上，地址：http://120.78.159.149/Seckill/list
-
-	<a href="http://120.78.159.149/Seckill/list" target="_blank">项目地址(点我直接访问)</a>
+	已放在阿里云公网上，地址：[http://120.78.159.149/Seckill/list](http://120.78.159.149/Seckill/list)
