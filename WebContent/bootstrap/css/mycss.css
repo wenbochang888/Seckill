@@ -1,0 +1,43 @@
+.bg {  
+    position:fixed;   
+    top:0;   
+    left:0;   
+    width:100%;   
+    height:100%;  
+    z-index:-1;  
+}  
+
+.bg img {  
+    position:absolute;   
+    left:0;   
+    right:0;   
+    bottom:0;   
+    margin:auto;   
+    width:100%;  
+    height:100%;  
+    z-index:-1;  
+}  
+
+.time {
+	position:fixed;   
+    top:100px;   
+    left:100px;  
+}
+
+.introduce {
+    color: #D8BFD8;
+}
+
+.back {
+  padding-top: 10px;
+  padding-bottom: 40px;
+  background-color: #eee;
+}
+
+.forgot {
+    color: #797979;
+    margin-left: 160px;
+    overflow: hidden;
+    text-align: center;
+    width: 100%;
+}

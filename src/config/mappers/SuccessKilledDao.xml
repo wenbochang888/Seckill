@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.dao.SuccessKilledDao">
+	
+	<insert id="insertSuccessKilled">
+		insert ignore into success_killed(seckill_id, user_phone, state)
+			values(#{seckillId}, #{userPhone}, 0)
+	</insert>
+	
+	<select id="queryByIdWithSeckill" resultType="com.entity.SuccessKilled">
+		<!-- 如何告诉MyBatis把结果映射到SuccessKilled同时映射seckill属性 -->
+		<!-- 可以自由控制SQL -->
+		SELECT
+			sk.seckill_id,
+			sk.user_phone,
+			sk.create_time,
+			sk.state,
+			s.seckill_id "seckill.seckill_id",
+			s.`name` "seckill.name",
+			s.number "seckill.number",
+			s.start_time "seckill.start_time",
+			s.end_time "seckill.end_time",
+			s.create_time "seckill.create_time"
+		FROM
+			success_killed sk
+		INNER JOIN seckill s ON sk.seckill_id = s.seckill_id
+		WHERE
+			sk.seckill_id = #{seckillId}
+		AND sk.user_phone = #{userPhone}
+	</select>
+	
+	<select id="queryAllById" resultType="com.entity.SuccessKilledRecord">
+		select s.seckill_id,name,number,s.create_time createTimeGoods,start_time,end_time,
+		user_phone,state,sk.create_time createTimeSeckillGoods
+		from seckill s,success_killed sk where s.seckill_id = sk.seckill_id;
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+

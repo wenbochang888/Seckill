@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
+
+	<context:component-scan base-package="com.service">
+	</context:component-scan>
+	
+	<bean id = "comboPooledDataSource" class = "com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="jdbcUrl" value = "jdbc:mysql:///seckill"></property>
+		<property name="driverClass" value = "com.mysql.jdbc.Driver"></property>
+		<property name="user" value = "root"></property>
+		<property name="password" value = "123456"></property>
+		
+		<property name="maxPoolSize" value = "30"></property>
+		<property name="minPoolSize" value = "10"></property>
+		<property name="autoCommitOnClose" value = "false"></property>
+		<!-- 超时  默认0无限重试   改为1000ms -->
+		<property name="checkoutTimeout" value = "1000"></property>
+		<!-- 重试次数   默认为30次 -->
+		<property name="acquireRetryAttempts" value = "3"></property>
+	</bean>
+	
+	<bean id = "sqlSessionFactoryBean" class = "org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref = "comboPooledDataSource"></property>
+		<!-- 配置全局配置文件 -->
+		<property name="configLocation" value="classpath:config/mybatis-config.xml"></property>
+		<!-- 扫描sql配置文件：mapper需要的xml文件 -->
+		<property name="mapperLocations" value = "classpath:config/mappers/*.xml"></property>
+	</bean>
+	
+	<mybatis-spring:scan base-package="com.dao"/>
+	
+	<!-- 配置事务管理器  用的是spring的jdbc管理方式 -->
+	<bean id = "dataSourceTransactionManager" class = "org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref = "comboPooledDataSource"></property>
+	</bean>
+	
+	<!-- 配置基于注解的声明式事务      	默认使用注解来管理事务的行为 -->
+	<tx:annotation-driven transaction-manager="dataSourceTransactionManager"/>
+	
+	<bean id = "jedisPoolConfig" class = "redis.clients.jedis.JedisPoolConfig">
+	</bean>
+	
+	<!-- 这里为了不泄露我的redis，那就xxx表示了，见谅 -->
+	<!-- 配置redis缓存 spring管理redis -->
+	<bean id = "redisDao" class = "com.dao.cache.RedisDao">
+		<constructor-arg index="0" ref="jedisPoolConfig"></constructor-arg>
+		<constructor-arg index="1" value="120.78.159.xxx"></constructor-arg>
+		<constructor-arg index="2" value="xxxx"></constructor-arg>
+		<constructor-arg index="3" value="xxxx"></constructor-arg>
+	</bean>
+	
+</beans>
+
+
+
+
